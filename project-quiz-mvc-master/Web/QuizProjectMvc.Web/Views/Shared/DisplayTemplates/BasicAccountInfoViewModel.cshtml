@@ -1,0 +1,35 @@
+﻿@model QuizProjectMvc.Services.Data.Models.Account.BasicAccountInfoViewModel
+
+<p>
+    <label>First Name:</label>
+    @if (string.IsNullOrEmpty(Model.FirstName))
+    {
+        <text>No Information</text>
+    }
+    else
+    {
+        <span>@Model.FirstName</span>
+    }
+</p>
+<p>
+    <label>Last Name:</label>
+    @if (string.IsNullOrEmpty(Model.LastName))
+    {
+        <text>No Information</text>
+    }
+    else
+    {
+        <span>@Model.LastName</span>
+    }
+</p>
+<p>
+    <label>Bio:</label>
+    @if (string.IsNullOrEmpty(Model.Bio))
+    {
+        <text>No Information</text>
+    }
+    else
+    {
+        <p>@Model.Bio</p>
+    }
+</p>

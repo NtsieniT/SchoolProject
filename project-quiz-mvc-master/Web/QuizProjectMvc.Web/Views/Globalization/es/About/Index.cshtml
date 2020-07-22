@@ -1,0 +1,113 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "About";
+}
+
+<div class="about wrapper" ng-app="about" ng-controller="AboutController as ctrl">
+    <div class="dropdown language">
+        <a href="#" class="dropdown-toggle btn btn-primary"
+           data-toggle="dropdown" role="button"
+           aria-expanded="false"><i class="fa fa-language"></i> Idioma <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="#" data-lang="en">English</a></li>
+            <li><a href="#" data-lang="es">Español</a></li>
+        </ul>
+    </div>
+
+    <button class="btn btn-round btn-primary btn-next"> <i class="fa fa-chevron-circle-right"></i></button>
+    <section class="about-carousel nav-container" slick settings="ctrl.slickConfig">
+        <article class="intro">
+            <h2>Aprendemos, practicamos, jugamos…</h2>
+            <p>
+                Hola a todos. Eres estudiante o profesional, trabajador activo o parado, ama de casa o
+                jubilado, no importa. Si te gusta aprender cosas nuevas de forma divertida, ¡bienvenido
+                en el <strong>Quiz Project!</strong>
+            </p>
+            <p>
+                Es un lugar positivo para la gente con diferente experiencia, ideas y opiniones.
+            </p>
+            <p>
+                ¿Has soñado alguna vez con hacer tus propias preguntas? ¿Quieres crear tu propio test?
+                Aquí tienes esta posibilidad. Elige los temas que te inquietan y da voluntad a tu creatividad.
+            </p>
+        </article>
+        <article class="usage-info">
+            <h3>¿Cómo puedes crear tu test?</h3>
+            <p>
+                Es muy sencillo guiarse por la página. Primero tienes que registrarte como usuario o también
+                puedes entrar con tu cuenta de Google. Luego vas a Features y del menú desplegado haces
+                click sobre Create New Quiz. Rellena tus preguntas y respuestas. Para fijar la respuesta
+                correcta haz click sobre la letra al inicio (a,b,c,d…) Necesitas por lo menos 3 preguntas
+                para que puedas guardar tu test con el botón <em>Save Quiz</em>. Tienes la opción para editar si
+                algo no te ha salido bien o si quieres añadir más preguntas. Eso es todo.
+            </p>
+            <p>
+                Sin contenido ofensivo y malintencionado, por favor. Pon tus conocimientos en práctica y se bueno.
+            </p>
+            <p class="outro text-right">
+                <em>¡Que lo pases bien! Diviértete.</em>
+            </p>
+        </article>
+    </section>
+</div>
+
+    <div class="content">
+        <div class="illumination"></div>
+        <section class="description row">
+            <article class="col-md-4 offer">
+                <h3>About this site</h3>
+                <input type="checkbox" id="cb-offer" class="read-more-state" />
+                <p class="read-more-wrap">
+                    This site is for everybody who likes to crate quizzes and test. Everybody is free to solve quizzes.
+                    <span class="read-more-target">If you want to also create quizzes you can quickly create an account or use your existing google+ accont</span>
+                </p>
+                <label for="cb-offer" class="read-more-trigger"></label>
+            </article>
+            <article class="col-md-4 we-are">
+                <h3>Contact</h3>
+                <input type="checkbox" id="cb-we-are" class="read-more-state" />
+                <p class="read-more-wrap">
+                    My name is Peter Velkov you can reach me at
+                    <a href="mailto:kidroca@gmail.com">kidroca@gmail.com</a>
+                </p>
+            </article>
+            <article class="col-md-4 mission">
+                <h3>Technical</h3>
+                <input type="checkbox" id="cb-mission" class="read-more-state" />
+                <p class="read-more-wrap">
+                    If you are interested in the source code of this app you can check it out on
+                    <a href="https://github.com/kidroca/project-quiz-mvc">github</a>
+                    <span class="read-more-target">
+                        Technologies used:
+                        <span class="label label-danger">ASP.NET MVC</span>
+                        <span class="label label-danger">ASP.NET Web API</span>
+                        <span class="label label-danger">AngularJS</span>
+                        <span class="label label-danger">jQuery</span>
+                        <span class="label label-success">JavaScript</span>
+                        <span class="label label-success">C#</span>
+                    </span>
+                </p>
+                <label for="cb-mission" class="read-more-trigger"></label>
+            </article>
+        </section>
+        <section class="about quote row">
+            <input type="checkbox" id="cb-quote" class="read-more-state" />
+            <p class="read-more-wrap">
+                “A star falls from the sky and into your hands. Then it seeps through your veins and swims inside your blood and becomes every part of you. And then you have to put it back into the sky.
+                <span class="read-more-target">
+                    And it's the most painful thing you'll ever have to do and that you've ever done. But what's yours is yours. Whether it’s up in the sky or here in your hands. And one day, it'll fall from the sky and hit you in the head real hard and that time, you won't have to put it back in the sky again.”
+                    <span class="pull-right">― C. JoyBell C.</span>
+                </span>
+            </p>
+            <label for="cb-quote" class="read-more-trigger btn-default"></label>
+        </section>
+    </div>
+
+
+@section styles {
+    @Styles.Render("~/Content/slick-carousel")
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/about")
+}

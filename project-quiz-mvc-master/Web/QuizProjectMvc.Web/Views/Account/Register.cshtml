@@ -1,0 +1,20 @@
+﻿@using QuizProjectMvc.Web.ViewModels.Account
+@model RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+@Html.Partial("_RegisterFormPartial")
+
+@section aside {
+    <div id="socialLoginForm" class="widget text-center">
+        @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+    </div>
+
+    @Html.Partial("_AvatarSelectionPartial")
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/select-avatar")
+}

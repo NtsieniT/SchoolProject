@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="description" content="Create and solve quizzes and test from a variety of generes" />
+    <meta name="keywords"
+          content="quiz, test, project-quiz, projectquiz, projectquizapp, project quiz" />
+    <meta name="author" content="Peter Velkov" />
+
+    @RenderSection("meta", required: false)
+
+    <title>@ViewBag.Title - TUT Quiz</title>
+    @Styles.Render("~/Content/css")
+    @RenderSection("styles", required: false)
+</head>
+
+<body>
+    <div id="main-wrapper">
+
+        @Html.Partial("_HeaderPartial")
+
+        @RenderSection("notification", required: false)
+
+        <div id="content-wrapper" class="container-fluid body-content">
+            @RenderBody()
+        </div>
+
+
+    </div>
+
+    @Html.Partial("_FooterPartial")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/google")
+    @Scripts.Render("~/bundles/default")
+    @*@Scripts.Render("~/bundles/module-loader")*@
+        
+    @RenderSection("scripts", required: false)
+
+</body>
+
+</html>

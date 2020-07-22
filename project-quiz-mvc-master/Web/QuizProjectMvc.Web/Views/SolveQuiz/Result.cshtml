@@ -1,0 +1,76 @@
+﻿@model IQuizEvaluationResult
+
+@{
+    ViewBag.Title = string.Format("Solution Of {0}", Model.Title);
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <h1 class="text-center">Overall: @string.Format("{0:F}%", Model.GetSuccessPercentage())</h1>
+
+    <div class="wrapper">
+
+        <h2 class="text-center">Results</h2>
+        @foreach (var question in Model.QuestionResults)
+        {
+            <div class="questions-container 
+                 @(question.AnsweredCorrectly ? "corrent-answer" : "incorrect-answer")">
+
+                <div class="panel panel-@(question.AnsweredCorrectly ? "success" : "danger")">
+
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-center">@question.Title</h3>
+                    </div>
+
+                    <ul class="panel-body list-group">
+
+                        @foreach (var answer in question.Answers)
+                        {
+
+                            var classes = new List<string>();
+                            string icon = String.Empty;
+                            string title = String.Empty;
+
+                            if (answer.IsCorrect)
+                            {
+                                classes.Add("success correct");
+                                icon = "fa fa-check";
+                                title = "This is the correct answer. ";
+                            }
+                            else
+                            {
+                                icon = "fa fa-times";
+                            }
+
+                            if (answer.Id == question.SelectedAnswerId)
+                            {
+                                if (!answer.IsCorrect)
+                                {
+                                    classes.Add("danger incorrect");
+                                }
+
+                                classes.Add("selected");
+                                title += "You selected this answer";
+                            }
+
+                            <li href="javascript:;"
+                                class="list-group-item answer alert alert-@string.Join(" ", classes)"
+                                title="@title">
+
+                                <i class="@icon" aria-hidden="true"></i>
+                                <span>@answer.Text</span>
+                            </li>
+                        }
+                        
+                    </ul>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+
+@section Styles {
+    @Styles.Render("~/Content/solve")
+}

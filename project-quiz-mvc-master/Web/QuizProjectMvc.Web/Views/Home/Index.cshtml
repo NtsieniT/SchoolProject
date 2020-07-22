@@ -1,0 +1,51 @@
+﻿@using QuizProjectMvc.Services.Data.Models
+@using QuizProjectMvc.Web.Controllers
+@using QuizProjectMvc.Web.ViewModels
+@model QuizProjectMvc.Web.ViewModels.Home.IndexViewModel
+    
+@{
+    ViewBag.Title = "Quiz Categories";
+    Layout = "~/Views/Shared/_StandardLayout.cshtml";
+
+    Notification notification = null;
+
+    if (TempData["error"] != null)
+    {
+        notification = new Notification { Message = (string)TempData["error"], CssClass = "alert-danger" };
+    }
+    else if (TempData["notification"] != null)
+    {
+        notification = new Notification { Message = (string)TempData["notification"], CssClass = "alert-info" };
+    }
+
+    if (notification != null)
+    {
+        Html.RenderPartial("_NotificationPartial", notification);
+    }
+}
+
+<ul class="categories-gallery clearfix">
+    @{
+        int counter = 1;
+    }
+
+    @foreach (var category in Model.Categories)
+    {
+        <li class="pic-@(counter%4)">
+            <a href="/Home/DisplayPage?CategoryName=@category.Name&TotalPages=0&Page=1&PageSize=3">
+                <h3>
+                    @category.Name
+                </h3>
+
+                <div class="pic">
+                    <img src="@category.AvatarUrl"/>
+                </div>
+            </a>
+
+        </li>
+
+        counter++;
+    }
+</ul>
+
+

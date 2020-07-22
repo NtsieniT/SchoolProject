@@ -1,0 +1,86 @@
+﻿@using QuizProjectMvc.Common
+@using QuizProjectMvc.Web.Areas.Administration.Controllers
+@using QuizProjectMvc.Web.Controllers
+<header class="wrapper">
+
+    <div id="logo">
+        <img src="~/Content/images/logo.png" alt="logo">
+    </div>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid nav-container">
+            
+            <div class="navbar-header">
+                <button data-toggle="collapse" data-target="#main-nav" aria-expanded="false" class="navbar-toggle collapsed">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div id="main-nav" aria-expanded="false" style="height: 0.8px;" class="navbar-collapse collapse">
+
+                <ul class="nav navbar-nav">
+                    <li>
+                        @Html.ActionLink(
+                            "Home", "Index", "Home",
+                            new {area = string.Empty},
+                            new {@class = "home-link"})
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#">Features</a>
+                        <ul class="drop-shadow">
+                            <li>
+                                @Html.ActionLink("Home", "Index", "Home", null, new {@class = "home-link"})
+                            </li>
+                            <li>
+                                @(Html.ActionLink<QuizzesController>("Search", c => c.Search(null)))
+                            </li>
+                            <li>
+                                @(Html.ActionLink<RankingController>("Ranking", c => c.Classification()))
+                            </li>
+                            @if (Request.IsAuthenticated)
+                            {
+                                <li>
+                                    @(Html.ActionLink<ManageQuizController>("Create New Quiz", c => c.Create()))
+                                </li>
+                                <li>
+                                    @(Html.ActionLink<ProfileController>("Profile", c => c.My()))
+                                </li>
+                            }
+                        </ul>
+                    </li>
+
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>
+                            @(Html.ActionLink<UsersController>("Users", c => c.Index(null)))
+                        </li>
+                    }
+
+                    <li>
+                        @(Html.ActionLink<AboutController>("About", c => c.Index()))
+                    </li>
+
+                    @if (User.IsInRole(GlobalConstants.AdministratorRoleName))
+                    {
+                        <li>
+                            @(Html.ActionLink<AdministrationController>("Admin Panel", c => c.AdminMenu()))
+                        </li>
+                    }@*<li class="dropdown">
+                        <a href="" class="dropdown-toggle">Language</a>
+                        <ul role="menu" class="dropdown-menu drop-shadow language">
+                            <li><a data-lang="en">English</a></li>
+                            <li><a data-lang="es">Español</a></li>
+                        </ul>
+                    </li>*@
+                </ul>
+
+                @Html.Partial("_LoginPartial")
+
+            </div>
+        </div>
+    </nav>
+</header>

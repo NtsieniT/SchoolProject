@@ -1,0 +1,23 @@
+﻿@model QuizProjectMvc.Web.ViewModels.PageModels.SearchPageViewModel
+
+@{
+    ViewBag.Title = "Quiz Search";
+    ViewBag.AvailableCategories = Model.Categories;
+    Layout = "~/Views/Shared/_StandardLayout.cshtml";
+}
+
+<section id="search-filter">
+    @Html.Partial("_SearchFormPartial", Model.QuizSearchModel)
+</section>
+
+<section id="search-results">
+
+@Html.DisplayForModel("BaseQuizPageModel", Model)
+
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery-ajax")
+    @Scripts.Render("~/bundles/fb")
+}

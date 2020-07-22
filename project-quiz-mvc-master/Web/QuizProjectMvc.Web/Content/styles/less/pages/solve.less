@@ -1,0 +1,137 @@
+﻿@import "../helpers/index";
+@import "../modules/question-widget.less";
+
+.container-fluid {
+    h1, h2 {
+        color: white;
+        .pageTitleShadow();
+    }
+
+    .questions-container {
+
+        .panel {
+
+            .panel-heading {
+                color: @articleImageBackground;
+            }
+
+            &-success .panel-heading {
+                background-color: @carousel-container-bg;
+            }
+
+            &-danger .panel-heading {
+                background-color: @btnDanger;
+            }
+        }
+
+        .alert {
+
+            &-success {
+                color: @carousel-container-bg;
+            }
+
+            &-danger {
+                color: @btnDanger;
+            }
+        }
+
+        .selected {
+            background-color: antiquewhite;
+        }
+    }
+}
+
+.carousel-container {
+    position: relative;
+    font-family: @font-thin;
+
+    #solve-quiz {
+        transition: all 0.3s;
+        width: 10%;
+
+        &.ng-hide-remove {
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        &.ng-hide-remove-active {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .indicators {
+        transition: all 0.3s;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+
+        .progress {
+            width: 70%;
+
+            .progress-bar {
+                background-color: @btnStartGradient;
+            }
+        }
+
+        .questions-paging {
+            font-family: @font-droid;
+
+            li {
+                & > {
+                    float: left;
+                }
+
+                a:first-child, a:last-child {
+                    border-radius: 4px;
+                }
+            }
+
+            .answered {
+                a {
+                    color: white;
+                    background-color: #1C232B;
+                }
+            }
+        }
+    }
+
+    .question-wrap {
+        overflow: hidden;
+    }
+
+    .question-slider-box {
+        width: 100%;
+        display: flex;
+        margin-bottom: 4rem;
+    }
+
+
+    @media screen and (max-width: 767px) {
+
+        .question-slider-box {
+            transition: transform 0s !important;
+        }
+
+        .question-slide {
+            width: 100%;
+            margin: 0;
+        }
+
+        .indicators {
+            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #solve-quiz {
+            width: inherit;
+        }
+
+        .slide-controls {
+            display: none;
+        }
+    }
+}

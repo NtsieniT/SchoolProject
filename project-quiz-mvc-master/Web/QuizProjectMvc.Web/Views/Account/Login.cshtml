@@ -1,0 +1,88 @@
+﻿@using QuizProjectMvc.Web.ViewModels
+@using QuizProjectMvc.Web.ViewModels.Account
+@model LoginViewModel
+@{
+    Layout = "~/Views/Shared/_StandardLayout.cshtml";
+    ViewBag.Title = "Log in";
+    var labelAttributes = new { @class = "col-md-3 control-label" };
+    var inputAttributes = new { @class = "form-control" };
+    var validationAttributes = new { @class = "text-danger" };
+}
+
+@if (ViewBag.Error != null)
+{
+    @section notification {
+        @{
+            var notification = new Notification { Message = ViewBag.Error, CssClass = "alert-danger" };
+        }
+
+        @Html.Partial("_NotificationPartial", notification);
+    }
+}
+
+
+<div>
+    <div class="col-md-7">
+        <section id="loginForm">
+            @using (Html.BeginForm("Login", "Account", new { ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                <fieldset>
+                    <legend>Use a local account to log in.</legend>
+
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Username, labelAttributes)
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Username, inputAttributes)
+                            @Html.ValidationMessageFor(m => m.Username, string.Empty, validationAttributes)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password, labelAttributes)
+                        <div class="col-md-9">
+                            @Html.PasswordFor(m => m.Password, inputAttributes)
+                            @Html.ValidationMessageFor(m => m.Password, "", validationAttributes)
+
+                            <div class="checkbox">
+                                <label>
+                                    @Html.CheckBoxFor(m => m.RememberMe)
+                                    Remember Me?
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-10 col-md-2">
+                            <input type="submit" value="Log in" class="btn btn-primary" />
+                        </div>
+                    </div>
+
+                    @* Enable this once you have account confirmation enabled for password reset functionality
+                        <p>
+                            @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                        </p>*@
+                </fieldset>
+            }
+
+            <hr />
+            <p class="text-right">
+                Need an account?
+                @Html.ActionLink("Signup", "Register")
+            </p>
+
+        </section>
+    </div>
+
+    <div class="col-md-offset-1 col-md-4">
+        <section id="socialLoginForm" class="widget">
+            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

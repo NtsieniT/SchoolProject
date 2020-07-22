@@ -1,0 +1,22 @@
+﻿@model QuizProjectMvc.Web.ViewModels.Account.ExternalLoginListViewModel
+@using Microsoft.Owin.Security
+
+@{
+    var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+}
+
+<h3>Use another service to log in.</h3>
+
+@using (Html.BeginForm("ExternalLogin", "Account", new { Model.ReturnUrl }))
+{
+    @Html.AntiForgeryToken()
+
+        <div id="socialLoginList" class="well">
+            <p class="text-center">
+                @foreach (AuthenticationDescription p in loginProviders)
+                {
+                    <button type="submit" class="btn btn-lg btn-@(p.AuthenticationType.ToLower())" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account"></button>
+                }
+            </p>
+        </div>
+}

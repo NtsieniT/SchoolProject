@@ -1,0 +1,78 @@
+﻿@using Newtonsoft.Json
+@model QuizProjectMvc.Web.ViewModels.Quiz.Solve.QuizForSolvingModel
+
+@{
+    ViewBag.Title = $"Solve {Model.Title}";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section meta {
+    <meta property="og:url" content="https://projectquiz.azurewebsites.net/Quizzes/Solve?id=@Model.Id" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="@Model.Title" />
+    <meta property="og:description" content="@Model.Description" />
+    <meta property="og:image" content="@Model.AvatarUrl" />
+    <meta property="fb:app_id" content="461214147401172" />
+}
+
+<div ng-app="solveQuiz"
+     ng-controller="SolveQuizController as ctrl"
+     class="carousel-container">
+
+    <section class="question-wrap">
+
+        <div class="back-track"></div>
+
+        <div class="question-slider-box" ng-style="{
+             width: ctrl.SLIDER_WIDTH
+        }">
+
+            <div class="question-slide"
+                 ng-repeat="question in ctrl.quiz.Questions">
+
+                <div ng-include="ctrl.questionTemplate"></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="indicators wrapper">
+
+        <kid-question-pagination class="questions-paging"
+                                 direction-links="false"
+                                 boundary-links="true"
+                                 items-per-page="ctrl.pager.pageSize"
+                                 total-items="ctrl.questionsCount"
+                                 max-size="7"
+                                 toggle-answered="ctrl.pager.toggleAnswered"
+                                 ng-model="ctrl.currentPage"></kid-question-pagination>
+
+        <button id="solve-quiz"
+                ng-show="ctrl.completedPercent === 100"
+                ng-click="ctrl.submit(ctrl.quiz)"
+                class="btn btn-lg btn-info col-md-offset-3 col-md-6">
+            Ready
+        </button>
+    </div>
+</div>
+
+@section styles
+{
+    @Styles.Render("~/Content/slick-carousel")
+    @Styles.Render("~/Content/solve")
+}
+
+@section scripts
+{
+    @{
+        var quizJson = JsonConvert.SerializeObject(Model);
+    }
+
+    <script>
+        window.quiz = @Html.Raw(quizJson);
+    </script>
+
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/slick-carousel")
+    @Scripts.Render("~/bundles/solve-quiz")
+    @Scripts.Render("~/bundles/fb")
+}

@@ -1,0 +1,26 @@
+﻿[
+  {
+    "outputFile": "Content/index.css",
+    "inputFile": "Content/index.less"
+  },
+  {
+    "outputFile": "Content/solve.css",
+    "inputFile": "Content/solve.less"
+  },
+  {
+    "outputFile": "Content/admin/admin.css",
+    "inputFile": "Content/admin/admin.less"
+  },
+  {
+    "outputFile": "Content/styles/less/index.css",
+    "inputFile": "Content/styles/less/index.less"
+  },
+  {
+    "outputFile": "Content/styles/less/pages/solve.css",
+    "inputFile": "Content/styles/less/pages/solve.less"
+  },
+  {
+    "outputFile": "Content/styles/less/modules/question-widget.css",
+    "inputFile": "Content/styles/less/modules/question-widget.less"
+  }
+]

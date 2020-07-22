@@ -1,0 +1,19 @@
+﻿@model QuizProjectMvc.Web.ViewModels.PageModels.ProfilePageViewModel
+
+@{
+    ViewBag.Title = "Your Profile";
+}
+
+@Html.Partial("_ProfileInfoWidgetPartial", Model.PublicProfile)
+
+@section aside {
+    @Html.Partial("_AsidePartial", Model)
+}
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery-ajax")
+    @Scripts.Render("~/bundles/select-avatar")
+    @Scripts.Render("~/bundles/toggle-profile-update")
+}
